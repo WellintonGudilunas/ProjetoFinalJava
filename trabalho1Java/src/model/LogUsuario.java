@@ -20,7 +20,7 @@ public class LogUsuario extends Log {
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         String dataHoraFormatada = dataHora.format(formatter);
-        return "\nLogUsuarioaaaaaaaaaaaa:" + this.mensagem + dataHoraFormatada +
+        return "\nLogUsuario: " + this.mensagem + dataHoraFormatada +
         "\nUsuario=" + usuario;
     }
 

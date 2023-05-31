@@ -24,7 +24,7 @@ public class LogLivro extends Log {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         String dataHoraFormatada = dataHora.format(formatter);
 
-        return "\nLogLivro :" + this.mensagem + dataHoraFormatada +
+        return "\nLogLivro: " + this.mensagem + dataHoraFormatada +
                 "\nlivro=" + livro;
     }
     

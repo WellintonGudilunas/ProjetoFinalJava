@@ -16,8 +16,8 @@ public class Emprestimo implements Serializable{
     private Salvar salvar;
     private int codigoEmprestimo;
     private List<Livro> livros = new ArrayList<Livro>();
-    private List<Usuario> usuarios = new ArrayList<>();
-    private List<Emprestimo> emprestimos = new ArrayList<>();
+    private List<Usuario> usuarios = new ArrayList<Usuario>();
+    private List<Emprestimo> emprestimos = new ArrayList<Emprestimo>();
 
     public Emprestimo() {
         
@@ -115,7 +115,7 @@ public class Emprestimo implements Serializable{
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         return "Data de empréstimo=" + dataEmprestimo.format(formatter) +  ", Data de devolução Prevista=" + dataDevolucao.format(formatter) +
-                ", \nData devolução efetiva: " + (getDataDevolucaoEfetiva() == null ? "Ainda não devolveu" : getDataDevolucaoEfetiva()) +
+                ", \nData devolução efetiva: " + (getDataDevolucaoEfetiva() == null ? "Ainda não devolveu" : getDataDevolucaoEfetiva().format(formatter)) +
                 ", Código do empréstimo=" + codigoEmprestimo +
                 "\nLivro emprestado: " + livro.getTitulo() + ", Código do livro: " + livro.getCodigo() + 
                 ", \nUsuario que emprestou: " + usuario.getNome() + ", Codigo do usuario: " + usuario.getCodigo() + 
