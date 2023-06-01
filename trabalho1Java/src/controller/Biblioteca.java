@@ -24,8 +24,6 @@ public class Biblioteca {
         this.salvar = new Salvar();
     }
 
-    
-
     // EMPRESTAR LIVRO ---------------------------------------
     public boolean emprestarLivro(Emprestimo emprestimo){ // PRONTO
         try {
@@ -307,7 +305,7 @@ public class Biblioteca {
         }    
     }
     // ------------------------------------------------------------------------------
-        
+   
     //PESQUISAR USUARIO POR -----------------------------------------------------
     @SuppressWarnings("unchecked")
     public void pesquisarUsuarioCodigoLog(int codigo){ // PRONTO // REVER UTILIZAÇÃO DO MÉTODO

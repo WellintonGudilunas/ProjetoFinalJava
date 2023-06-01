@@ -1,5 +1,7 @@
 package model;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -11,7 +13,7 @@ import controller.Livro;
 import controller.Usuario;
 
 public class Salvar implements Serializable {
-    private List<LogUsuario> logUsuarios;
+    public List<LogUsuario> logUsuarios;
     private List<LogLivro> logLivros;
     private List<LogEmprestimo> logEmprestimos;
 
@@ -19,6 +21,27 @@ public class Salvar implements Serializable {
         logUsuarios = new ArrayList<>();
         logLivros = new ArrayList<>();
         logEmprestimos = new ArrayList<>();
+    }
+
+    @SuppressWarnings("unchecked")
+    public void exportarDados() {
+        // Exportar log de usuários
+        try {
+            FileInputStream fileIn = new FileInputStream("logUser.ser");
+            ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+        
+            List<Log> logs = (List<Log>) objectIn.readObject();
+            for (Log log : logs) {
+                if (log instanceof LogUsuario) {
+                    LogUsuario logUsuario = (LogUsuario) log;
+                    this.logUsuarios.add(logUsuario);
+                }
+            }
+            objectIn.close();
+            fileIn.close();
+        } catch (Exception e) {
+            System.out.println("Erro ao ler os logs: " + e);
+        }   
     }
 
     public void adicionarLogUsuario(String mensagem, LocalDateTime data, Usuario usuario) {
@@ -54,7 +77,7 @@ public class Salvar implements Serializable {
         try {
             FileOutputStream fileOut = new FileOutputStream(nomeArquivo);
             ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
-    
+            
             List<Log> logs = new ArrayList<>(logLivros);
     
             objectOut.writeObject(logs);

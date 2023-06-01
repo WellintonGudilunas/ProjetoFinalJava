@@ -33,6 +33,10 @@ public abstract class App {
                 System.out.println("Erro em cadastrar dados iniciais de TESTE" + e);
             }
 
+            /*for(int i = 1, i2 = 100, i3 = 1; i <= 100 || i2 >= 1; i++, i2--, i3++){
+                System.out.println(i + "/" + i2 + " - " + i3);
+            }*/
+
             try {
                 Boolean menu = true;
                 Salvar salvar = new Salvar();
@@ -59,6 +63,7 @@ public abstract class App {
                         "0- Sair"
                         );
                     System.out.print("Digite a opção desejada: ");
+                    salvar.exportarDados();
                     int opcao;
                     try {
                         opcao = scanner.nextInt();
@@ -67,6 +72,8 @@ public abstract class App {
                         scanner.next();
                         continue;
                     }
+                                                
+                   
 
                     if(opcao == 0) { // FOI
                         return;
@@ -99,7 +106,7 @@ public abstract class App {
                             biblioteca.cadastrarLivro(livro);
 
                             salvar.adicionarLogLivro("Livro cadastrado em ", LocalDateTime.now(), livro);
-                            salvar.salvarLogLivro("logLivro.ser");
+                            salvar.salvarLogLivro("src/model/logs/logLivro.ser");
 
                             System.out.println("\n-----------------------\nLivro cadastrado!!!\n -----------------------");
                         } catch (InputMismatchException e) {
@@ -111,6 +118,7 @@ public abstract class App {
                         }
                     } else if (opcao == 2){ // FOI
                         try {
+                            
                             System.out.println("\nCadastrar Usuários \n");
 
                             System.out.print("Digite o código do Usuário: ");
@@ -137,8 +145,8 @@ public abstract class App {
 
                             Usuario user = new Usuario(codigo, nome, sobrenome, endereco, email, cpf, telefone);
                             biblioteca.cadastrarUsuario(user);
-
                             salvar.adicionarLogUsuario("Usuario cadastrado em ", LocalDateTime.now(), user);
+                            
                             salvar.salvarLogUsuario("logUser.ser");
                         } catch (InputMismatchException e) {
                             System.out.println("Entrada de dados inválida: " + e);
