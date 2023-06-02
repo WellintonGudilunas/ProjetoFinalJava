@@ -1,4 +1,5 @@
 package model;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
@@ -27,7 +28,7 @@ public class Salvar implements Serializable {
     public void exportarDados() {
         // Exportar log de usuários
         try {
-            FileInputStream fileIn = new FileInputStream("logUser.ser");
+            FileInputStream fileIn = new FileInputStream("src/model/logs/logUser.ser");
             ObjectInputStream objectIn = new ObjectInputStream(fileIn);
         
             List<Log> logs = (List<Log>) objectIn.readObject();
@@ -40,7 +41,41 @@ public class Salvar implements Serializable {
             objectIn.close();
             fileIn.close();
         } catch (Exception e) {
-            System.out.println("Erro ao ler os logs: " + e);
+            System.out.println("Erro ao ler os de Usuário ao EXPORTAR DADOS: " + e);
+        }   
+
+        try {
+            FileInputStream fileIn = new FileInputStream("src/model/logs/logLivro.ser");
+            ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+        
+            List<Log> logs = (List<Log>) objectIn.readObject();
+            for (Log log : logs) {
+                if (log instanceof LogLivro) {
+                    LogLivro logLivro = (LogLivro) log;
+                    this.logLivros.add(logLivro);
+                }
+            }
+            objectIn.close();
+            fileIn.close();
+        } catch (Exception e) {
+            System.out.println("Erro ao ler os de Livro ao EXPORTAR DADOS: " + e);
+        }   
+
+        try {
+            FileInputStream fileIn = new FileInputStream("src/model/logs/logEmprestimo.ser");
+            ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+        
+            List<Log> logs = (List<Log>) objectIn.readObject();
+            for (Log log : logs) {
+                if (log instanceof LogEmprestimo) {
+                    LogEmprestimo logEmprestimo = (LogEmprestimo) log;
+                    this.logEmprestimos.add(logEmprestimo);
+                }
+            }
+            objectIn.close();
+            fileIn.close();
+        } catch (Exception e) {
+            System.out.println("Erro ao ler os de Empréstimo ao EXPORTAR DADOS: " + e);
         }   
     }
 
@@ -72,9 +107,36 @@ public class Salvar implements Serializable {
             System.out.println("Erro ao adicionar log de Emprestimo na lista de LogEmprestimo na classe Salvar" + e);
         }
     }
+    
+    public void salvarLogUsuario(String nomeArquivo) {
+        try {
+            boolean exists = (new File("src/model/logs/a")).exists();
+            if(!exists){
+                File SalvarUsuario = new File("src/model/logs/a");
+                SalvarUsuario.getParentFile().mkdirs();
+            }
+            FileOutputStream fileOut = new FileOutputStream(nomeArquivo);
+            ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+            List<Log> logs = new ArrayList<>(logUsuarios);
+    
+            objectOut.writeObject(logs);
+            System.out.println("Logs de usuários salvos com sucesso em " + nomeArquivo);
+
+            objectOut.close();
+            fileOut.close();
+
+        } catch (Exception e) {
+            System.out.println("Erro ao salvar os logs de usuário: " + e);
+        }
+    }
 
     public void salvarLogLivro(String nomeArquivo) {
         try {
+            boolean exists = (new File("src/model/logs/a")).exists();
+            if(!exists){
+                File SalvarUsuario = new File("src/model/logs/a");
+                SalvarUsuario.getParentFile().mkdirs();
+            }
             FileOutputStream fileOut = new FileOutputStream(nomeArquivo);
             ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
             
@@ -91,25 +153,14 @@ public class Salvar implements Serializable {
         }
     }
 
-    public void salvarLogUsuario(String nomeArquivo) {
-        try {
-            FileOutputStream fileOut = new FileOutputStream(nomeArquivo);
-            ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
-            List<Log> logs = new ArrayList<>(logUsuarios);
-    
-            objectOut.writeObject(logs);
-            System.out.println("Logs de usuários salvos com sucesso em " + nomeArquivo);
-
-            objectOut.close();
-            fileOut.close();
-
-        } catch (Exception e) {
-            System.out.println("Erro ao salvar os logs de usuário: " + e);
-        }
-    }
-
     public void salvarLogEmprestimo(String nomeArquivo) {
+        
         try {
+            boolean exists = (new File("src/model/logs/a")).exists();
+            if(!exists){
+                File SalvarUsuario = new File("src/model/logs/a");
+                SalvarUsuario.getParentFile().mkdirs();
+            }
             FileOutputStream fileOut = new FileOutputStream(nomeArquivo);
             ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
              

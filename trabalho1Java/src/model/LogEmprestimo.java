@@ -32,7 +32,4 @@ public class LogEmprestimo extends Log {
     public String toString() {
         return "LogEmprestimo [livro=" + livro + ", usuario=" + usuario + ", emprestimo=" + emprestimo + "]";
     }
-
-    
-
 }

@@ -190,9 +190,9 @@ public class Biblioteca {
 
     // PESQUISAR LIVRO POR ------------------------------------------------------
     @SuppressWarnings("unchecked")// COLOQUEI ISSO PQ SE NAO FICA MARCANDO EM LARANJA UM  WARNING NO CAST DE OBJECT IN PARA LIST<LOG>
-    public void pesquisarLivroCodigoLog(int codigo) { // PRONTO
+    public void pesquisarLivroCodigoLog(int codigo) { // PRONTO // REVER UTILIZACAO DO METODO
         try {
-            FileInputStream fileIn = new FileInputStream("logLivro.ser");
+            FileInputStream fileIn = new FileInputStream("src/model/logs/logLivro.ser");
             ObjectInputStream objectIn = new ObjectInputStream(fileIn);
         
             List<Log> logs = (List<Log>) objectIn.readObject();
@@ -311,7 +311,7 @@ public class Biblioteca {
     public void pesquisarUsuarioCodigoLog(int codigo){ // PRONTO // REVER UTILIZAÇÃO DO MÉTODO
 
         try {
-            FileInputStream fileIn = new FileInputStream("logUser.ser");
+            FileInputStream fileIn = new FileInputStream("src/model/logs/logUser.ser");
             ObjectInputStream objectIn = new ObjectInputStream(fileIn);
         
             List<Log> logs = (List<Log>) objectIn.readObject();
@@ -411,7 +411,7 @@ public class Biblioteca {
         //LOGS LIVRO
         System.out.println();
         try {
-            FileInputStream fileIn = new FileInputStream("logLivro.ser");
+            FileInputStream fileIn = new FileInputStream("src/model/logs/logLivro.ser");
             ObjectInputStream objectIn = new ObjectInputStream(fileIn);
         
             List<Log> logs = (List<Log>) objectIn.readObject();
@@ -436,7 +436,7 @@ public class Biblioteca {
         //LOGS USER
         System.out.println();
         try {
-            FileInputStream fileIn = new FileInputStream("logUser.ser");
+            FileInputStream fileIn = new FileInputStream("src/model/logs/logUser.ser");
             ObjectInputStream objectIn = new ObjectInputStream(fileIn);
         
             List<Log> logs = (List<Log>) objectIn.readObject();
@@ -461,7 +461,7 @@ public class Biblioteca {
         //LOGS EMPRESTIMO
         System.out.println();
         try {
-            FileInputStream fileIn = new FileInputStream("logEmprestimo.ser");
+            FileInputStream fileIn = new FileInputStream("src/model/logs/logEmprestimo.ser");
             ObjectInputStream objectIn = new ObjectInputStream(fileIn);
         
             List<Log> logs = (List<Log>) objectIn.readObject();

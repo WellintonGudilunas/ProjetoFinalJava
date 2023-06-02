@@ -36,10 +36,10 @@ public abstract class App {
             /*for(int i = 1, i2 = 100, i3 = 1; i <= 100 || i2 >= 1; i++, i2--, i3++){
                 System.out.println(i + "/" + i2 + " - " + i3);
             }*/
-
+            Salvar salvar = new Salvar();
+            salvar.exportarDados();
             try {
                 Boolean menu = true;
-                Salvar salvar = new Salvar();
                 while(menu){
                     System.out.println(
                         "\n\nBIBLIOTECA!!! \n\n" +
@@ -63,7 +63,7 @@ public abstract class App {
                         "0- Sair"
                         );
                     System.out.print("Digite a opção desejada: ");
-                    salvar.exportarDados();
+
                     int opcao;
                     try {
                         opcao = scanner.nextInt();
@@ -147,7 +147,7 @@ public abstract class App {
                             biblioteca.cadastrarUsuario(user);
                             salvar.adicionarLogUsuario("Usuario cadastrado em ", LocalDateTime.now(), user);
                             
-                            salvar.salvarLogUsuario("logUser.ser");
+                            salvar.salvarLogUsuario("src/model/logs/logUser.ser");
                         } catch (InputMismatchException e) {
                             System.out.println("Entrada de dados inválida: " + e);
                             scanner.next();
@@ -172,7 +172,7 @@ public abstract class App {
                             if (biblioteca.emprestarLivro(emprestimo)){
                                 LocalDateTime data = LocalDateTime.now();
                                 salvar.adicionarLogEmprestimo("Novo empréstimo cadastrado em ", data, emprestimo);
-                                salvar.salvarLogEmprestimo("logEmprestimo.ser");
+                                salvar.salvarLogEmprestimo("src/model/logs/logEmprestimo.ser");
                             } else {
                                 System.out.println("Erro no empréstimo");
                             }
@@ -191,9 +191,9 @@ public abstract class App {
                             int codigoEmprestimo = scanner.nextInt();
                             
                             LocalDateTime data = LocalDateTime.now();
-                            salvar.adicionarLogEmprestimo("Nova DEVOLUÇÃO em ", data, biblioteca.pesquisarEmprestimoCodigo2(codigoEmprestimo));
+                            salvar.adicionarLogEmprestimo("Nova DEVOLUÇÃO no Emprestimo com ", data, biblioteca.pesquisarEmprestimoCodigo2(codigoEmprestimo));
                             if (biblioteca.devolverLivro(codigoEmprestimo)){
-                                salvar.salvarLogEmprestimo("logEmprestimo.ser");
+                                salvar.salvarLogEmprestimo("src/model/logs/logEmprestimo.ser");
                             } else {
                                 System.out.println("Erro na devolução");
                             }
