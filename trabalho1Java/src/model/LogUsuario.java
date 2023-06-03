@@ -2,8 +2,6 @@ package model;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import controller.Usuario;
-
 public class LogUsuario extends Log {
     private Usuario usuario;
 

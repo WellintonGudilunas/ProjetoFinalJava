@@ -1,4 +1,4 @@
-package model;
+package controller;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -9,9 +9,13 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import controller.Emprestimo;
-import controller.Livro;
-import controller.Usuario;
+import model.Emprestimo;
+import model.Livro;
+import model.Log;
+import model.LogEmprestimo;
+import model.LogLivro;
+import model.LogUsuario;
+import model.Usuario;
 
 public class Salvar implements Serializable {
     public List<LogUsuario> logUsuarios;

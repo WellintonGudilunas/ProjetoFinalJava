@@ -2,10 +2,6 @@ package model;
 
 import java.time.LocalDateTime;
 
-import controller.Emprestimo;
-import controller.Livro;
-import controller.Usuario;
-
 public class LogEmprestimo extends Log {
     private Livro livro;
     private Usuario usuario;

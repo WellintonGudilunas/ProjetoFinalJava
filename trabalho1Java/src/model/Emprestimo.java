@@ -1,4 +1,4 @@
-package controller;
+package model;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Salvar;
+import controller.Salvar;
 
 public class Emprestimo implements Serializable{
 

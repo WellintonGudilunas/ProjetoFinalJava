@@ -3,10 +3,10 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import controller.Biblioteca;
-import controller.Emprestimo;
-import controller.Livro;
-import controller.Usuario;
-import model.Salvar;
+import model.Emprestimo;
+import controller.Salvar;
+import model.Livro;
+import model.Usuario;
 
 public abstract class App {
     public static Scanner scanner = new Scanner(System.in);
@@ -33,9 +33,7 @@ public abstract class App {
                 System.out.println("Erro em cadastrar dados iniciais de TESTE" + e);
             }
 
-            /*for(int i = 1, i2 = 100, i3 = 1; i <= 100 || i2 >= 1; i++, i2--, i3++){
-                System.out.println(i + "/" + i2 + " - " + i3);
-            }*/
+
             Salvar salvar = new Salvar();
             salvar.exportarDados();
             try {

@@ -3,8 +3,6 @@ package model;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import controller.Livro;
-
 public class LogLivro extends Log {
     private static final long serialVersionUID = 123456789L;
     private Livro livro;
