@@ -4,7 +4,7 @@ import com.controller.ClienteController;
 import com.controller.FuncionarioController;
 import com.model.Cliente;
 import com.model.Funcionario;
-
+                    
 
 public class App {
     public static void main( String[] args ) {
@@ -12,7 +12,7 @@ public class App {
         Funcionario funcionario = new Funcionario("asd","asd",101,"101", "asd", "asd", "@asd", 123, 123,"asd");
 
         try {  
-            Cliente cli = new Cliente("viadao alterador","asd",101,"101", "asd", "asd", "@asd", 123, "asd");
+            Cliente cli = new Cliente("teste alterador","asd",101,"101", "asd", "asd", "@asd", 123, "asd");
             ClienteController.deletarCliente(5);
             //FuncionarioController.cadastrarFuncionario(funcionario);
             
