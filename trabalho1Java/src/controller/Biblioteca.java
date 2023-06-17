@@ -614,7 +614,7 @@ public class Biblioteca {
             System.out.println("Erro em listar empréstimos: " + e);
         }
     }
-    
+
     //---------------------------------------------------------------------
 
     public List<Emprestimo> getEmprestimos() { // PRONTO
@@ -633,5 +633,4 @@ public class Biblioteca {
     public String toString() {
         return "Biblioteca [livros=" + this.livros + "]";
     }
-
 }

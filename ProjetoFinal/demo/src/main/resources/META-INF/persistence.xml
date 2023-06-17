@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+version="2.0">
+<!-- Configurações do nome da sua unidade de persistência -->
+<persistence-unit name="db" transaction-type="RESOURCE_LOCAL">
+<properties>
+<!-- Configurações do drive MySql -->
+<property name="javax.persistence.jdbc.driver"
+value="com.mysql.cj.jdbc.Driver"/>
+<!-- Configurações do caminho do seu banco de dados -->
+<property name="javax.persistence.jdbc.url"
+value="jdbc:mysql://localhost:3307/distribuidora"/>
+<!-- Configurações do usuário do seu banco de dados -->
+<property name="javax.persistence.jdbc.user" value="root"/>
+<!-- Configurações da senha do seu banco de dados -->
+<property name="javax.persistence.jdbc.password" value=""/>
+<!-- Configurações do Hibernate -->
+<property name="hibernate.dialect"
+value="org.hibernate.dialect.MySQL8Dialect"/>
+<property name="hibernate.hbm2ddl.auto" value="update"/> <!--
+ou "create" para criar as tabelas -->
+<property name="hibernate.show_sql" value="true"/> <!-- exibe 
+as consultas SQL no console -->
+</properties>
+</persistence-unit>
+</persistence>
