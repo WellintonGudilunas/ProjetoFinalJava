@@ -5,9 +5,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "Funcionario")
 public class Funcionario extends Pessoa {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+
     private int salario;
     private String cargo;
 
@@ -37,11 +35,13 @@ public class Funcionario extends Pessoa {
         this.cargo = cargo;
     }
 
-    
-
     @Override
     public String toString() {
-        return "\tFucionario \n\nsalario: " + salario + "\ncargo: " + cargo + "\n\n";
+        return "Funcionario [salario=" + salario + ", cargo=" + cargo + "]";
     }
+
+    
+
+    
 
 }

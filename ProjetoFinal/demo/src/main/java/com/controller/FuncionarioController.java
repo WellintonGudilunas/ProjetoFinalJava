@@ -3,61 +3,75 @@ package com.controller;
 import java.util.List;
 
 import com.dal.FuncionarioDao;
+import com.model.Cliente;
 import com.model.Funcionario;
 
 public abstract class FuncionarioController {
 
-    public static void cadastrarFuncionario(Funcionario funcionario) {
+    public static void cadastrarFuncionario(Funcionario funcionario) throws Exception {
         try {
             FuncionarioDao.cadastrarFuncionario(funcionario);
         } catch (Exception e) {
-            System.out.println("Erro ao realizar o cadastro");
+            throw new Exception("Erro ao cadastrar funcionario, CAUSA:" + e.getMessage());
         }
     }
-    public static void alterarFuncionario(Funcionario funcionario) {
+
+    public static void alterarFuncionario(Funcionario funcionario) throws Exception {
         try {
-            if(FuncionarioDao.buscarFuncionario(funcionario.getId()) != null){
+            if (FuncionarioDao.buscarFuncionario(funcionario.getId()) != null) {
                 FuncionarioDao.alteraFuncionario(funcionario);
             }
         } catch (Exception e) {
-            System.out.println("Erro ao alterar o cadastro");
+            throw new Exception("Erro ao alterar funcionario, CAUSA:" + e.getMessage());
         }
-        
+
     }
-    public static void deletarFuncionario(int id) {
+
+    public static void deletarFuncionario(int id) throws Exception {
         try {
-            if(FuncionarioDao.buscarFuncionario(id) != null){
+            if (FuncionarioDao.buscarFuncionario(id) != null) {
                 FuncionarioDao.deletaFuncionario(FuncionarioDao.buscarFuncionario(id));
             }
         } catch (Exception e) {
-            System.out.println("Erro ao deletar o cadastro");
+            throw new Exception("Erro ao deletar funcionario, CAUSA:" + e.getMessage());
         }
-        
+
     }
-    public static List<Funcionario> listarFuncionarios() {
+
+    public static List<Funcionario> listarFuncionarios() throws Exception {
         try {
-            return FuncionarioDao.listarFuncionarios();
+            List<Funcionario> lista = FuncionarioDao.listarFuncionarios();
+            if (lista.size() > 0) {
+                return lista;
+            } else {
+                return null;
+            }
         } catch (Exception e) {
-            System.out.println("Erro ao listar o cadastro");
-            return null;
+            throw new Exception("Erro ao listar funcionarios, CAUSA:" + e.getMessage());
         }
     }
-    public static Funcionario buscarFuncionarioPorId(int id) {
+
+    public static Funcionario buscarFuncionarioPorId(int id) throws Exception {
         try {
-            return FuncionarioDao.buscarFuncionario(id);      
+            if (id == 0)
+                throw new Exception("id = 0");
+            return FuncionarioDao.buscarFuncionario(id);
         } catch (Exception e) {
-            System.out.println("Erro ao buscar o cadastro");
-            return null;
+            throw new Exception("Erro ao buscar funcionarios, CAUSA:" + e.getMessage());
         }
     }
-    public static List<Funcionario> buscarFuncionarioPorNome(String nome) {
+
+    public static List<Funcionario> buscarFuncionarioPorNome(String nome) throws Exception {
         try {
-            return FuncionarioDao.buscarFuncionarioPorNome(nome);      
+            if (nome != null) {
+                return FuncionarioDao.buscarFuncionarioPorNome(nome);
+            } else {
+                return null;
+            }
         } catch (Exception e) {
-            System.out.println("Erro ao buscar o cadastro");
-            return null;
+            throw new Exception("Erro ao buscar funcionario, CAUSA:" + e.getMessage());
         }
-        
+
     }
-    
+
 }

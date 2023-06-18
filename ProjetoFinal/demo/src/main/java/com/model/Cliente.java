@@ -32,8 +32,6 @@ public class Cliente extends Pessoa {
 
     @Override
     public String toString() {
-        return "\nCliente [id=" + ", enderecoEntregas=" + enderecoEntregas + "] " + super.toString();
+        return "Cliente [enderecoEntregas=" + enderecoEntregas + ", " + super.toString() + "]" ;
     }
-
-
 }

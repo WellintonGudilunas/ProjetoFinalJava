@@ -12,7 +12,7 @@ version="2.0">
 value="com.mysql.cj.jdbc.Driver"/>
 <!-- Configurações do caminho do seu banco de dados -->
 <property name="javax.persistence.jdbc.url"
-value="jdbc:mysql://localhost:3307/distribuidora"/>
+value="jdbc:mysql://localhost:3306/distribuidora"/>
 <!-- Configurações do usuário do seu banco de dados -->
 <property name="javax.persistence.jdbc.user" value="root"/>
 <!-- Configurações da senha do seu banco de dados -->

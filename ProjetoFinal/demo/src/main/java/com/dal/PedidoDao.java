@@ -54,8 +54,9 @@ public abstract class PedidoDao{
             //Busca um registro por ID, o atributo Pedido.class serve pra identificar que é uma classe do tipo Pedido
             Pedido pedido = em.find(Pedido.class, id);
             em.getTransaction().commit();
-            return pedido; 
+            return pedido;
         } catch (Exception e) {
+            System.out.println("Exception:" + e.getMessage());
             em.getTransaction().rollback();
             return null;
         }

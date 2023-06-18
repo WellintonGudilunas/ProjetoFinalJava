@@ -1,13 +1,13 @@
 package com.model;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
+@Entity
 public class Produto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String nomeProduto;
     private int quantidadeEstoque;
     private Double preço;
@@ -36,6 +36,10 @@ public class Produto {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public int getQuantidadeEstoque() {
         return quantidadeEstoque;
     }
@@ -62,8 +66,8 @@ public class Produto {
 
     @Override
     public String toString() {
-        return "\tProduto \n\nnomeProduto: " + nomeProduto + "\nid: " + id + "\nquantidadeEstoque: " + quantidadeEstoque
-                + "\npreço: " + preço + "\ncategoria: " + categoria + "\n\n";
+        return "Produto [id=" + id + ", nomeProduto=" + nomeProduto + ", quantidadeEstoque=" + quantidadeEstoque
+                + ", preço=" + preço + ", categoria=" + categoria + "]";
     }
 
 }

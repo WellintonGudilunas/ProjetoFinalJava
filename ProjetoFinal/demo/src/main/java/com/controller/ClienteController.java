@@ -7,84 +7,80 @@ import com.model.Cliente;
 
 public abstract class ClienteController {
 
-    public static void cadastrarCliente(Cliente cliente) {
+    public static void cadastrarCliente(Cliente cliente) throws Exception {
         try {
-            if(cliente.getNome() == null){
-                System.out.println("Você não pode cadastrar um cliente sem nome!!!");    
+            if (cliente.getNome() == null) {
+                System.out.println("Você não pode cadastrar um cliente sem nome!!!");
                 return;
             }
-            
             ClienteDao.cadastrarCliente(cliente);
         } catch (Exception e) {
-            System.out.println("Erro ao realizar o cadastro");
+            throw new Exception("Erro ao cadastrar cliente, CAUSA:" + e.getMessage());
         }
     }
 
-    public static void alterarCliente(int id, Cliente cliente) {
+    public static void alterarCliente(int id, Cliente cliente) throws Exception {
         try {
-        Cliente prevCliente = ClienteController.buscarClientePorId(id);
-        if(prevCliente == null){
-            return;
-        }
-        prevCliente = cliente;
-        prevCliente.setId(id);
+            Cliente prevCliente = ClienteController.buscarClientePorId(id);
+            if (prevCliente == null) {
+                return;
+            }
+            prevCliente = cliente;
+            prevCliente.setId(id);
 
-            if(ClienteDao.buscarCliente(prevCliente.getId()) != null){
+            if (ClienteDao.buscarCliente(prevCliente.getId()) != null) {
                 ClienteDao.alteraCliente(prevCliente);
             }
         } catch (Exception e) {
-            System.out.println("Erro ao alterar o cadastro");
+            throw new Exception("Erro ao alterar cliente, CAUSA:" + e.getMessage());
         }
-        
+
     }
 
-    public static void deletarCliente(int id) {
+    public static void deletarCliente(int id) throws Exception {
         try {
-            if(ClienteDao.buscarCliente(id) != null){
+            if (ClienteDao.buscarCliente(id) != null) {
                 ClienteDao.deletaCliente(ClienteDao.buscarCliente(id));
             }
         } catch (Exception e) {
-            System.out.println("Erro ao deletar o cadastro");
+            throw new Exception("Erro ao deletar cliente, CAUSA:" + e.getMessage());
         }
-        
+
     }
 
-    public static List<Cliente> listarClientes() {
+    public static List<Cliente> listarClientes() throws Exception {
         try {
-            if(ClienteDao.listarClientes().size() > 0){
-                return ClienteDao.listarClientes();
+            List<Cliente> lista = ClienteDao.listarClientes();
+            if (lista.size() > 0) {
+                return lista;
             } else {
-                System.out.println("Não há nenhum cliente cadastrado");
                 return null;
             }
         } catch (Exception e) {
-            System.out.println("Erro ao listar os cadastros");
-            return null;
+            throw new Exception("Erro ao listar cliente, CAUSA:" + e.getMessage());
         }
     }
 
-    public static Cliente buscarClientePorId(int id) {
+    public static Cliente buscarClientePorId(int id) throws Exception {
         try {
-            if(id == 0) throw new Exception();
-            return ClienteDao.buscarCliente(id);      
+            if (id == 0)
+                throw new Exception();
+            return ClienteDao.buscarCliente(id);
         } catch (Exception e) {
-            System.out.println("Erro ao buscar o cadastro");
-            return null;
+            throw new Exception("Erro ao buscar cliente, CAUSA:" + e.getMessage());
         }
     }
 
-    public static List<Cliente> buscarClientePorNome(String nome) {
+    public static List<Cliente> buscarClientePorNome(String nome) throws Exception {
         try {
-            if(nome != null){
-                return ClienteDao.buscarClientePorNome(nome);      
+            if (nome != null) {
+                return ClienteDao.buscarClientePorNome(nome);
             } else {
-                System.out.println("Num tem");
                 return null;
             }
         } catch (Exception e) {
-            System.out.println("Erro ao buscar o cadastro");
-            return null;
+            throw new Exception("Erro ao buscar cliente, CAUSA:" + e.getMessage());
         }
-        
+
     }
 }

@@ -8,7 +8,8 @@ import javax.persistence.*;
 public class Pessoa implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @Column(name = "idPessoa")
+    private int idPessoa;
 
     protected String nome, sobrenome, endereco, email, cpf, cep;
     protected int idade, telefone;
@@ -30,11 +31,11 @@ public class Pessoa implements Serializable {
     }
     
     public int getId() {
-        return id;
+        return idPessoa;
     }
     
     public void setId(int id) {
-        this.id = id;
+        this.idPessoa = id;
     }
     public String getNome() {
         return nome;
@@ -100,12 +101,13 @@ public class Pessoa implements Serializable {
         this.telefone = telefone;
     }
 
-    
-
     @Override
     public String toString() {
-        return "Pessoas [nome=" + nome + ", sobrenome=" + sobrenome + ", endereco=" + endereco + ", email=" + email
-                + ", idade=" + idade + ", cpf=" + cpf + ", cep=" + cep + ", telefone=" + telefone + "]";
+        return "Pessoa [idPessoa=" + idPessoa + ", nome=" + nome + ", sobrenome=" + sobrenome + ", endereco=" + endereco
+                + ", email=" + email + ", cpf=" + cpf + ", cep=" + cep + ", idade=" + idade + ", telefone=" + telefone
+                + "]";
     }
+
+    
 
 }
