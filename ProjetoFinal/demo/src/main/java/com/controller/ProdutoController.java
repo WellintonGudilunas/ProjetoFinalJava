@@ -7,8 +7,16 @@ import com.model.Produto;
 
 public abstract class ProdutoController {
 
+    private static boolean produtoExiste(Produto produto) throws Exception {
+        String nome = produto.getNomeProduto();
+        return buscarProdutoPorNome(nome) != null;
+    }
+
     public static void cadastrarProduto(Produto produto) throws Exception {
         try {
+            if(produtoExiste(produto)){
+                throw new Exception("Produto já tem um cadastrado");
+            }
             ProdutoDao.cadastrarProduto(produto);
         } catch (Exception e) {
             throw new Exception("Erro ao cadastrar produto, CAUSA:" + e.getMessage());
@@ -27,7 +35,7 @@ public abstract class ProdutoController {
             ProdutoDao.alteraProduto(produto);
 
         } catch (Exception e) {
-            throw new Exception("Erro ao alterar pedido, CAUSA:" + e.getMessage());
+            throw new Exception("Erro ao alterar produto, CAUSA:" + e.getMessage());
         }
 
     }
@@ -36,7 +44,7 @@ public abstract class ProdutoController {
         try {
             ProdutoDao.alteraProduto(produtos);
         } catch (Exception e) {
-            throw new Exception("Erro ao alterar pedido, CAUSA:" + e.getMessage());
+            throw new Exception("Erro ao alterar produto, CAUSA:" + e.getMessage());
         }
 
     }
@@ -47,7 +55,7 @@ public abstract class ProdutoController {
                 ProdutoDao.deletaProduto(ProdutoDao.buscarProduto(id));
             }
         } catch (Exception e) {
-            throw new Exception("Erro ao deletar pedido, CAUSA:" + e.getMessage());
+            throw new Exception("Erro ao deletar produto, CAUSA:" + e.getMessage());
         }
 
     }
@@ -56,7 +64,7 @@ public abstract class ProdutoController {
         try {
             return ProdutoDao.listarProdutos();
         } catch (Exception e) {
-            throw new Exception("Erro ao listar pedido, CAUSA:" + e.getMessage());
+            throw new Exception("Erro ao listar produto, CAUSA:" + e.getMessage());
         }
     }
 
@@ -66,15 +74,15 @@ public abstract class ProdutoController {
                 throw new Exception();
             return ProdutoDao.buscarProduto(id);
         } catch (Exception e) {
-            throw new Exception("Erro ao buscar pedido, CAUSA:" + e.getMessage());
+            throw new Exception("Erro ao buscar produto, CAUSA:" + e.getMessage());
         }
     }
 
-    public static Produto buscarProdutoPorNome(String nome) throws Exception {
+    public static Produto buscarProdutoPorNome(String nomeProduto) throws Exception {
         try {
-            return ProdutoDao.buscarProdutoPorNome(nome);
+            return ProdutoDao.buscarProdutoPorNome(nomeProduto.toLowerCase());
         } catch (Exception e) {
-            throw new Exception("Erro ao buscar pedido, CAUSA:" + e.getMessage());
+            throw new Exception("Erro ao buscar produto, CAUSA:" + e.getMessage());
         }
 
     }

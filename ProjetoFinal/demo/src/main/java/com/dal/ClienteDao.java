@@ -62,17 +62,17 @@ public abstract class ClienteDao{
         }
     }
 
-    public static List<Cliente> buscarClientePorNome(String nome) {
+    public static Cliente buscarClientePorCPF(String cpf) {
         try {
             em.getTransaction().begin();
             //Cria uma Query para buscar por nome no banco de dados 
-            Query sql = em.createQuery("SELECT p FROM Cliente p WHERE p.nome LIKE :nome");
+            Query sql = em.createQuery("SELECT p FROM Cliente p WHERE p.cpf LIKE :cpf");
             //Seta o parametro criado na quero ":nome" para seguir os critérios abaixo ("nome_da_tabela", String_de_consulta) os simbolos de % servem para indicar que pode ser qualquer coisa antes ou qualquer coisa depois
-            sql.setParameter("nome", "%" + nome + "%");
+            sql.setParameter("cpf", "%" + cpf + "%");
             //Adiciona o resultado em uma lista
             List<Cliente> clientes = sql.getResultList();
-            em.getTransaction().commit();    
-            return clientes;
+            em.getTransaction().commit();
+            return clientes.get(0);
             
         } catch (Exception e) {
             System.out.println(e.getMessage());

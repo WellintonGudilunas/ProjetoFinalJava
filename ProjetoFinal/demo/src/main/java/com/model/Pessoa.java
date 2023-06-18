@@ -11,11 +11,11 @@ public class Pessoa implements Serializable {
     @Column(name = "idPessoa")
     private int idPessoa;
 
-    protected String nome, sobrenome, endereco, email, cpf, cep;
-    protected int idade, telefone;
+    protected String nome, sobrenome, endereco, email, cpf, cep, telefone;
+    protected int idade;
 
     public Pessoa(String nome, String sobrenome, int idade, String cpf, String endereco, String cep, String email,
-            int telefone) {
+            String telefone) {
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.idade = idade;
@@ -29,14 +29,15 @@ public class Pessoa implements Serializable {
     public Pessoa() {
 
     }
-    
+
     public int getId() {
         return idPessoa;
     }
-    
+
     public void setId(int id) {
         this.idPessoa = id;
     }
+
     public String getNome() {
         return nome;
     }
@@ -93,11 +94,11 @@ public class Pessoa implements Serializable {
         this.cep = cep;
     }
 
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(int telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 
@@ -107,7 +108,5 @@ public class Pessoa implements Serializable {
                 + ", email=" + email + ", cpf=" + cpf + ", cep=" + cep + ", idade=" + idade + ", telefone=" + telefone
                 + "]";
     }
-
-    
 
 }

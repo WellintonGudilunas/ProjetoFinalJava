@@ -1,5 +1,6 @@
 package com.model;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,7 @@ public class Pedido {
     private int idPedido;
 
     private double valorTotal;
-    private String dataPedido;
+    private LocalDateTime dataPedido;
     private Double desconto = 0.00;
 
     @ManyToOne
@@ -24,10 +25,8 @@ public class Pedido {
     @JoinColumn(name = "pedidoId")
     private List<PedidoProduto> produtos = new ArrayList<>();
 
-    public Pedido(double valorTotal, String dataPedido, Double desconto) {
-        this.valorTotal = valorTotal;
+    public Pedido(LocalDateTime dataPedido) {
         this.dataPedido = dataPedido;
-        this.desconto = desconto;
     }
 
     public boolean addProduto(Produto produto, int quantidade) {
@@ -36,12 +35,11 @@ public class Pedido {
         pedidoProduto.setProduto(produto);
         pedidoProduto.setQuantidade(quantidade);
         for (PedidoProduto pp : produtos) {
-            if(pp.getProduto().getNomeProduto().equals(produto.getNomeProduto())){
+            if (pp.getProduto().getNomeProduto().equals(produto.getNomeProduto())) {
                 return false;
             }
         }
-        produtos.add(pedidoProduto);
-        return true;
+        return produtos.add(pedidoProduto);
     }
 
     public boolean alteraProduto(Produto produto, int quantidade) {
@@ -50,7 +48,7 @@ public class Pedido {
         pedidoProduto.setProduto(produto);
         pedidoProduto.setQuantidade(quantidade);
         for (PedidoProduto pp : produtos) {
-            if(pp.getProduto().getNomeProduto().equals(produto.getNomeProduto())){
+            if (pp.getProduto().getNomeProduto().equals(produto.getNomeProduto())) {
                 produtos.remove(pp);
                 produtos.add(pedidoProduto);
                 return true;
@@ -62,8 +60,7 @@ public class Pedido {
     public boolean removerProduto(Produto produto) {
         for (PedidoProduto pp : produtos) {
             if (pp.getProduto().getNomeProduto().equals(produto.getNomeProduto())) {
-                produtos.remove(pp);
-                return true;
+                return produtos.remove(pp);
             }
         }
         return false;
@@ -105,11 +102,11 @@ public class Pedido {
         this.valorTotal = valorTotal;
     }
 
-    public String getDataPedido() {
+    public LocalDateTime getDataPedido() {
         return dataPedido;
     }
 
-    public void setDataPedido(String dataPedido) {
+    public void setDataPedido(LocalDateTime dataPedido) {
         this.dataPedido = dataPedido;
     }
 

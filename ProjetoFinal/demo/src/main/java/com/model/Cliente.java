@@ -9,7 +9,7 @@ public class Cliente extends Pessoa {
     private String enderecoEntregas;
 
     public Cliente(String nome, String sobrenome, int idade, String cpf, String endereco, String cep, String email,
-            int telefone, String enderecoEntregas) {
+            String telefone, String enderecoEntregas) {
         super(nome, sobrenome, idade, cpf, endereco, cep, email, telefone);
         this.enderecoEntregas = enderecoEntregas;
     }
@@ -26,12 +26,8 @@ public class Cliente extends Pessoa {
         this.enderecoEntregas = enderecoEntregas;
     }
 
-    protected Double calcularDesconto(Double Valor) {
-        return 0.0;
-    }
-
     @Override
     public String toString() {
-        return "Cliente [enderecoEntregas=" + enderecoEntregas + ", " + super.toString() + "]" ;
+        return "Cliente [enderecoEntregas=" + enderecoEntregas + ", " + super.toString() + "]";
     }
 }

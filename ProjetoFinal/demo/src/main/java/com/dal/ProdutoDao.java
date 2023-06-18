@@ -76,15 +76,15 @@ public abstract class ProdutoDao {
         }
     }
 
-    public static Produto buscarProdutoPorNome(String nome) {
+    public static Produto buscarProdutoPorNome(String nomeProduto) {
         try {
             em.getTransaction().begin();
             // Cria uma Query para buscar por nome no banco de dados
-            Query sql = em.createQuery("SELECT p FROM Produto p WHERE p.nomeProduto LIKE :nome");
+            Query sql = em.createQuery("SELECT p FROM Produto p WHERE p.nomeProduto LIKE :nomeProduto");
             // Seta o parametro criado na quero ":nome" para seguir os critérios abaixo
             // ("nome_da_tabela", String_de_consulta) os simbolos de % servem para indicar
             // que pode ser qualquer coisa antes ou qualquer coisa depois
-            sql.setParameter("nome", "%" + nome + "%");
+            sql.setParameter("nomeProduto", "%" + nomeProduto + "%");
             // Adiciona o resultado em uma lista
             Produto produto = (Produto) sql.getSingleResult();
             em.getTransaction().commit();

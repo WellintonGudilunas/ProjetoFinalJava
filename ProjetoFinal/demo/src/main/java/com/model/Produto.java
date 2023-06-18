@@ -14,7 +14,7 @@ public class Produto {
     private String categoria;
 
     public Produto(String nomeProduto, int quantidadeEstoque, Double preço, String categoria) {
-        this.nomeProduto = nomeProduto;
+        this.nomeProduto = nomeProduto.toLowerCase();
         this.quantidadeEstoque = quantidadeEstoque;
         this.preço = preço;
         this.categoria = categoria;
@@ -29,7 +29,7 @@ public class Produto {
     }
 
     public void setNomeProduto(String nomeProduto) {
-        this.nomeProduto = nomeProduto;
+        this.nomeProduto = nomeProduto.toLowerCase();
     }
 
     public int getId() {

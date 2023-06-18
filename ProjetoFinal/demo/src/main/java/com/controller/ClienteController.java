@@ -7,11 +7,18 @@ import com.model.Cliente;
 
 public abstract class ClienteController {
 
+    private static boolean clienteExiste(Cliente cliente) throws Exception {
+        String cpf = cliente.getCpf();
+        return buscarClientePorCPF(cpf) != null;
+    }
+
     public static void cadastrarCliente(Cliente cliente) throws Exception {
         try {
             if (cliente.getNome() == null) {
-                System.out.println("Você não pode cadastrar um cliente sem nome!!!");
-                return;
+                throw new Exception("Não pode cadastrar um cliente sem nome!");
+            }
+            if (clienteExiste(cliente)) {
+                throw new Exception("Cliente já existe");
             }
             ClienteDao.cadastrarCliente(cliente);
         } catch (Exception e) {
@@ -63,18 +70,18 @@ public abstract class ClienteController {
 
     public static Cliente buscarClientePorId(int id) throws Exception {
         try {
-            if (id == 0)
-                throw new Exception();
+            if (id <= 0)
+                throw new Exception("Id inválido");
             return ClienteDao.buscarCliente(id);
         } catch (Exception e) {
             throw new Exception("Erro ao buscar cliente, CAUSA:" + e.getMessage());
         }
     }
 
-    public static List<Cliente> buscarClientePorNome(String nome) throws Exception {
+    public static Cliente buscarClientePorCPF(String cpf) throws Exception {
         try {
-            if (nome != null) {
-                return ClienteDao.buscarClientePorNome(nome);
+            if (cpf != null) {
+                return ClienteDao.buscarClientePorCPF(cpf);
             } else {
                 return null;
             }
