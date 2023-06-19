@@ -29,6 +29,7 @@ public abstract class PedidoController {
     public static void adicionarNoCarrinho(Pedido pedido, Produto produto, int quantidade) throws Exception {
         if (produto.getQuantidadeEstoque() < quantidade)
             throw new Exception("Erro, não há estoque disponível para o produto \"" + produto.getNomeProduto() + "\".");
+        if(quantidade <= 0) throw new Exception("Erro, quantidade inválida");
         try {
             if (!pedido.addProduto(produto, quantidade))
                 throw new Exception("Produto \"" + produto.getNomeProduto() + "\" já consta no carrinho");

@@ -70,10 +70,9 @@ public abstract class ClienteDao{
             //Seta o parametro criado na quero ":nome" para seguir os critérios abaixo ("nome_da_tabela", String_de_consulta) os simbolos de % servem para indicar que pode ser qualquer coisa antes ou qualquer coisa depois
             sql.setParameter("cpf", "%" + cpf + "%");
             //Adiciona o resultado em uma lista
-            List<Cliente> clientes = sql.getResultList();
+            Cliente cliente = (Cliente) sql.getSingleResult();
             em.getTransaction().commit();
-            return clientes.get(0);
-            
+            return cliente;
         } catch (Exception e) {
             System.out.println(e.getMessage());
             em.getTransaction().rollback();
